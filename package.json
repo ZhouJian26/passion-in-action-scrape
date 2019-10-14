@@ -1,0 +1,34 @@
+{
+  "name": "NextJS_Template",
+  "version": "1.0.0",
+  "description": "A Template for NextJS and with Now Deploy integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev-undinamic": "next",
+    "dev-dinamic": "node ./backend/server.js",
+    "build": "next build",
+    "start-undinamic": "next build && next start",
+    "start-dinamic": "NODE_ENV=production node ./backend/server.js",
+    "now-build": "next build",
+    "build-deploy": "next build && next export && node utility_script/gulp.optimizer.js"
+  },
+  "author": "Zhou Jian",
+  "license": "MIT",
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "clean-css": "^4.2.1",
+    "express": "^4.17.1",
+    "gulp-clean-css": "^4.2.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.0.2",
+    "next-compose-plugins": "^2.2.0",
+    "next-images": "^1.1.2",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}

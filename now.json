@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "moduleFixTest",
+  "builds": [{ "src": "package.json", "use": "@now/next" }],
+  "routes": [
+    { "src": "/p2/(?<id>[^/]*)", "dest": "/post2?id=$id" },
+    { "src": "/p/(?<title>[^/]*)", "dest": "/post?title=$title" }
+  ]
+}
