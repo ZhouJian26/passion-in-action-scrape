@@ -42,7 +42,7 @@ const getCourseInfo = (courseObj) => {
     // sede [3]
     resDataFormatted.push({
         key: "location",
-        value: infoList[3][1].text
+        value: ((infoList[3][1].text).split("&agrave;")).join("à ")
     });
     // iscrizioni [4]
     resDataFormatted.push({

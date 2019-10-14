@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "moduleFixTest",
+  "name": "PassionInActionWebsite",
   "builds": [
     {
       "src": "package.json",
