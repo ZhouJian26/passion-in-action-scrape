@@ -15,14 +15,16 @@ class CourseList extends Component {
     }
     render() {
         const { courseList } = this.state;
-        console.log(courseList);
+
         return (<ul className="courseList">
             {courseList.map((course, index) =>
                 <li key={index}>
-                    <h3>{course[0].value}</h3>
-                    <p>Categoria: {course[1].value.toLowerCase()}</p>
-                    <p>Lingua: {course[2].value}</p>
-                    <p>Dove: {course[3].value}</p>
+                    <h3>{course.title}</h3>
+                    <p>Categoria: {course.tag.toLowerCase()}</p>
+                    <p>Lingua: {course.lang}</p>
+                    <p>Dove: {course.where}</p>
+                    <p>Inizio iscrizioni: {course.subStartDate}</p>
+                    <p>Fine iscrizioni: {course.subEndDate} alle ore {course.subEndTime}</p>
                 </li>
             )}
         </ul>)
