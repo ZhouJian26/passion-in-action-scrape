@@ -25,8 +25,8 @@ const getCourseInfo = (courseObj) => {
         tag: infoList[1][1].text,
         lang: infoList[2][1].text,
         where: ((infoList[3][1].text).split("&agrave;")).join("à "),
-        subStartDate: ((infoList[4][1].child[0].text).split("dal ")).join(""),
-        subEndDate: ((infoList[4][2].child[0].text).split("del "))[1],
+        subStartDate: (infoList[4][1].child[0].text).split("dal ")[1].split("-").reverse().join("-"),
+        subEndDate: ((infoList[4][2].child[0].text).split("del "))[1].split("-").reverse().join("-"),
         subEndTime: ((((infoList[4][2].child[0].text).split(" del"))[0]).split("alle ore "))[1],
         link: ((infoList[infoList.length - 1][0].attr.href).split("amp;")).join("")
     };
