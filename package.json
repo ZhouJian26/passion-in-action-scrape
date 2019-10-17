@@ -17,7 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "@now/node": "^1.0.1",
+    "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
+    "bootstrap": "^4.3.1",
     "clean-css": "^4.2.1",
     "express": "^4.17.1",
     "gulp-clean-css": "^4.2.0",
@@ -28,7 +30,8 @@
     "next-images": "^1.1.2",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "reactstrap": "^8.0.1"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
