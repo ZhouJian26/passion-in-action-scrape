@@ -3,11 +3,11 @@
  * devo importare la navbar e il footer qui
  */
 import React from 'react'
-import Navbar from './components/navbar'
+import Navbar_c from './components/navbar'
 import Footer from './components/footer'
 const Layout = props => (
     <React.Fragment>
-        <Navbar></Navbar>
+        <Navbar_c></Navbar_c>
         {props.children}
         <Footer></Footer>
     </React.Fragment>
