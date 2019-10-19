@@ -1,5 +1,19 @@
 "use strict"
-
+/**
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * http://localhost:3000/api/courseDetails.js?id=8936&corso=1771410
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 const cheerio = require('cheerio');
 const request = require("request");
 module.exports = (req, res) => {
