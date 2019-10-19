@@ -30,9 +30,9 @@ class CourseList extends Component {
                                 </Card.Text>
                                 <ListGroup variant="flush">
                                     <ListGroup.Item>Lingua: {course.lang}</ListGroup.Item>
-                                    <ListGroup.Item>Dove: {course.where}</ListGroup.Item>
-                                    <ListGroup.Item>Inizio iscrizioni: {course.subStartDate}</ListGroup.Item>
-                                    <ListGroup.Item>Fine iscrizioni: {course.subEndDate} alle ore {course.subEndTime}</ListGroup.Item>
+                                    <ListGroup.Item>Dove: {course.location}</ListGroup.Item>
+                                    <ListGroup.Item>Inizio iscrizioni: {course.startSubData}</ListGroup.Item>
+                                    <ListGroup.Item>Fine iscrizioni: {course.endSubDate} alle ore {course.endSubTime}</ListGroup.Item>
                                 </ListGroup>
                             </Card.Body>
                         </Card>
