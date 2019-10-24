@@ -28,7 +28,7 @@ class CourseList extends Component {
               key={index}
               className="col-12 col-sm-10 col-md-6 col-lg-4 col-xl-4 py-2"
             >
-              <Card className="text-center h-100">
+              <Card className="text-center h-100 border border-dark">
                 <Card.Body className="d-flex flex-column justify-content-center">
                   <Card.Title>{course.title}</Card.Title>
                   <Card.Subtitle className="mb-2 text-muted">
@@ -71,7 +71,7 @@ class CourseList extends Component {
                   </ListGroup>
                   <Card.Text>
                     <Button
-                      variant="outline-secondary"
+                      variant="outline-dark"
                       className="mt-3"
                       href={`https://www.polimi.it${course.linkWs}`}
                       rel="nofollow"
