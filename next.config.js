@@ -2,7 +2,9 @@
 const withSass = require("@zeit/next-sass");
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
+const withCSS = require('@zeit/next-css')
 const fetch = require("isomorphic-unfetch");
+
 if (
   process.env.npm_package_scripts_build_deploy ==
   "next build && next export && node utility_script/gulp.optimizer.js"
@@ -10,14 +12,14 @@ if (
   module.exports = withPlugins(
     [
       // add a plugin with specific configuration
-
       withSass,
       [
         withImages,
         {
           inlineImageLimit: 16384
         }
-      ]
+      ],
+      withCSS
     ],
     {
       async exportPathMap() {
@@ -55,7 +57,8 @@ if (
         {
           inlineImageLimit: 16384
         }
-      ]
+      ],
+      withCSS
     ],
     {
       target: "serverless"

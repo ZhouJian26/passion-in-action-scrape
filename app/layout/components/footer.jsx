@@ -1,12 +1,14 @@
+import { Container } from 'react-bootstrap'
+
 const Footer = () => (
-    <div className="Footer">
+    <Container fluid={true} className="text-center bg-dark text-light p-3">
         <p>Alternative website of...</p>
-        <p> ©{new Date().getFullYear()}{" "}
+        <p className="m-0"> ©{new Date().getFullYear()}{" "}
             <b>
                 <a href="https://zhoujiandev.com">Zhou Jian</a>
             </b>
         </p>
-    </div>
+    </Container>
 );
 
 export default Footer;

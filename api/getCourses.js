@@ -1,52 +1,43 @@
-const https = require('https')
-const html2json = require('html2json').html2json
-const options = {
-    hostname: 'www.polimi.it',
-    port: "",
-    path: '/corsi/passion-in-action/',
-    method: 'GET'
+"use strict"
+const cheerio = require('cheerio')
+const request = require("request")
+const jsonframe = require('jsonframe-cheerio')
+const listaCorsiFrame = {
+    "corsi": {
+        "_s": ".item",
+        "_d": [
+            {
+                "title": ".titolo .descrizioneIniziativa",
+                "type": ".titolo .modErog",
+                "tag": ".keywords",
+                "lang": ".languages",
+                "location": ".sede",
+                "subDate": ".dateIscrizione",
+                "link": ".linkTo a @ href"
+            }
+        ]
+    }
 }
-const getCourseList = (parsetBody) => {
-    //ricerca nel file parsato dell'array che contiene i corsi
-    return parsetBody.child[0].child[3].child[3].child[2].child[0].child[3].child[3].child[6].child[3].child
-}
-const getCourseInfo = (courseObj) => {
-    // Extract data
-    const infoList = (courseObj.child.map((el) => { return el.child })).map(el => {
-        return el.map(el2 => { return el2 })
-    })
-    // Return formatted data
-    /**
-     * TODO
-     *  - title, se troppo lungo vengono dati puntini puntini quindi va fatta la richiesta al link per avere il nome completo
-     */
-    return {
-        title: ((infoList[0][0].child[0].text).split("&#39;")).join("'"),
-        tag: infoList[1][1].text,
-        lang: infoList[2][1].text,
-        where: ((infoList[3][1].text).split("&agrave;")).join("à "),
-        subStartDate: ((infoList[4][1].child[0].text).split("dal ")).join(""),
-        subEndDate: ((infoList[4][2].child[0].text).split("del "))[1],
-        subEndTime: ((((infoList[4][2].child[0].text).split(" del"))[0]).split("alle ore "))[1],
-        link: ((infoList[infoList.length - 1][0].attr.href).split("amp;")).join("")
-    };
-}
+
 module.exports = (req, res) => {
-    const getData = https.request(options, resData => {
-        var str = "";
-        resData.setEncoding('utf8')
-        resData.on('data', d => {
-            str += d;
+    request.get(`https://www.polimi.it/corsi/passion-in-action/`, (
+        error,
+        response,
+        data
+    ) => {
+        const $ = cheerio.load(data);
+        jsonframe($);
+        const dataFormatted = $('.listaCorsi').scrape(listaCorsiFrame).corsi.map(el => {
+            el.type = el.type.substring(1, el.type.length - 1);
+            el.tag = el.tag.substring(15, el.tag.length);
+            el.location = el.location.substring(6, el.location.length);
+            el.startSubData = el.subDate.substring(16, 26);
+            el.endSubTime = el.subDate.substring(35, 40);
+            el.endSubDate = el.subDate.substring(45, el.subDate.length);
+            el.lang = el.lang.substring(8, el.lang.length);
+            delete el.subDate;
+            return el;
         })
-        resData.on("end", () => {
-            const resDataArr = []
-            const dataGet = getCourseList(html2json(str))   //arrivo all'array che contiene tutti i corsi
-            dataGet.forEach(el => { resDataArr.push(getCourseInfo(el)) }) //creo l'array da restituire
-            res.send(resDataArr);
-        })
-    })
-    getData.on('error', error => {
-        console.error(error)
-    })
-    getData.end()
+        res.send(dataFormatted);
+    });
 }

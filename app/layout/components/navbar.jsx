@@ -2,10 +2,11 @@ import Link from "next/link";
 /**
  * Questo è come si crea un compotenete, viene usato in layout/test
  */
-const Navbar = () => (
-    <div className="Navbar">
-        <h1>Alternative Passion</h1>
-    </div>
+import { Navbar, Nav } from 'react-bootstrap';
+const Navbar_c = () => (
+    <Navbar fixed="top" bg="dark" variant="dark">
+        <Navbar.Brand href="#home">AlternativePassion</Navbar.Brand>
+    </Navbar>
 );
 
-export default Navbar;
+export default Navbar_c;
