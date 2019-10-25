@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Card, Container, ListGroup, Row, Col, Button } from "react-bootstrap";
 /**
  * add get data form S3
+ * add a controlledcomponent for card
+ * add a component for filter
+ * handle/hook function for control view
  */
 const API = "/static/example.json"; //"/api/getCourses.js"
 class CourseList extends Component {
@@ -21,8 +24,8 @@ class CourseList extends Component {
     const { courseList } = this.state;
 
     return (
-      <Container fluid={true} className="mt-5">
-        <Row className="justify-content-center pt-3 pb-3 mr-lg-3 ml-lg-3">
+      <Container fluid={true} className="mt-5 mb-2">
+        <Row className="justify-content-center pt-3 mr-lg-3 ml-lg-3">
           {courseList.map((course, index) => (
             <Col
               key={index}
@@ -83,6 +86,18 @@ class CourseList extends Component {
               </Card>
             </Col>
           ))}
+        </Row>
+        <Row
+          className="position-sticky"
+          style={{
+            bottom: 0,
+            padding: "1vh",
+            justifyContent: "center"
+          }}
+        >
+          <Button variant="primary" className="pl-5 pr-5">
+            Filtra
+          </Button>
         </Row>
       </Container>
     );
