@@ -4,14 +4,14 @@
  */
 
 import "../sass/main.scss";
-import React from 'react'
-import Layout from "../app/layout/dracula"
-import CourseList from "../app/indexComponents/courseList"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import Layout from "../app/layout/dracula";
+import CourseListApp from "../app/indexComponents/courseListApp";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Index = () => (
   <Layout>
-    <CourseList></CourseList>
+    <CourseListApp></CourseListApp>
   </Layout>
 );
 export default Index;

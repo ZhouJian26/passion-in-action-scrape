@@ -1,7 +1,7 @@
 {
-  "name": "NextJS_Template",
+  "name": "PassionInActionAlternative",
   "version": "1.0.0",
-  "description": "A Template for NextJS and with Now Deploy integration",
+  "description": "Alternative website of Passion in Action of Polimi.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
