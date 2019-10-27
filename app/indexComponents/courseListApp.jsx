@@ -122,7 +122,6 @@ class CourseListApp extends Component {
   }
   render() {
     const { courseList, status, filter } = this.state;
-    console.log("status: " + status);
     //console.log(filter);
     return (
       <Container fluid={true} className="mt-5 mb-2">
