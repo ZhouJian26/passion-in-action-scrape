@@ -4,14 +4,24 @@
  */
 
 import "../sass/main.scss";
-import React from 'react'
-import Layout from "../app/layout/dracula"
-import CourseList from "../app/indexComponents/courseList"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Head from "next/head";
+import React from "react";
+import Layout from "../app/layout/dracula";
+import CourseListApp from "../app/indexComponents/courseListApp";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Index = () => (
-  <Layout>
-    <CourseList></CourseList>
-  </Layout>
+  <React.Fragment>
+    <Head>
+      <title>Alternative Passion</title>
+      <meta
+        name="description"
+        content="AlternativePassion un sito creato per puro hobby."
+      />
+    </Head>
+    <Layout>
+      <CourseListApp></CourseListApp>
+    </Layout>
+  </React.Fragment>
 );
 export default Index;

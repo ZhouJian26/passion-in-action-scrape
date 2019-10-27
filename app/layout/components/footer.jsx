@@ -11,7 +11,9 @@ const Footer = () => (
       {" "}
       ©{new Date().getFullYear()}{" "}
       <b>
-        <a href="https://zhoujiandev.com">Zhou Jian</a>
+        <a className="text-light" href="https://zhoujiandev.com">
+          Zhou Jian
+        </a>
       </b>
     </p>
   </Container>

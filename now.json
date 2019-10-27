@@ -8,7 +8,7 @@
     },
     {
       "src": "/api/*",
-      "use": "@now/node@canary"
+      "use": "@now/node"
     }
   ]
 }
