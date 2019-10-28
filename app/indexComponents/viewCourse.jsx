@@ -28,12 +28,12 @@ const ViewCourse = ({ courseList, filter, switchView }) => {
                 </Card.Subtitle>
 
                 <ListGroup variant="flush mt-3">
-                  <ListGroup.Item>Dove: {course.location}</ListGroup.Item>
+                  <ListGroup.Item>A {course.location}</ListGroup.Item>
                   <ListGroup.Item>
-                    Indirizzato a {course.addressedTo}
+                    Rivolto a {course.addressedTo}
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    Tipo Corso:{" "}
+                    Tipo corso:{" "}
                     {course.type
                       .toLowerCase()
                       .split(";")

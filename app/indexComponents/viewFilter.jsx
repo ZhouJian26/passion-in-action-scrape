@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Form, Row, Button, Col, Container } from "react-bootstrap";
 
 /**
@@ -13,6 +13,7 @@ import { Form, Row, Button, Col, Container } from "react-bootstrap";
  * essendo dei set allora posso prendere il loro valore concatenato
  * senza spazio come id
  */
+
 const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
   return (
     <Container>
@@ -81,5 +82,4 @@ const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
     </Container>
   );
 };
-
 export default ViewFilter;

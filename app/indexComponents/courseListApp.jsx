@@ -99,6 +99,7 @@ class CourseListApp extends Component {
       });
   }
   handleClickSwitchView() {
+    window.scrollTo(0, 0);
     this.setState({ status: this.state.status == 1 ? 2 : 1 });
   }
   handleClickResetFilter() {
