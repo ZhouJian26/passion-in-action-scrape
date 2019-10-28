@@ -12,7 +12,7 @@ import ViewFilter from "./viewFilter";
 const API = "/static/example.json"; //"/api/getCourses.js"
 
 const buildFilterList = arrToFormat => {
-  return [...new Set(arrToFormat)].map((el, index) => {
+  return [...new Set(arrToFormat)].sort().map(el => {
     return { key: el, value: 0 };
   });
 };
@@ -39,13 +39,18 @@ class CourseListApp extends Component {
     fetch(API)
       .then(response => response.json())
       .then(data => {
-        /*data = data.map(el => {
-          el.period = el.period
-            .split(" ")
-            .filter(el2 => el2 != "a" && el2 != "dal" && el2 != "");
+        data = data.map(el => {
+          el.period = [
+            ...new Set(
+              el.period
+                .split(" ")
+                .filter(el2 => el2 != "a" && el2 != "dal" && el2 != "")
+            )
+          ];
           return el;
-        });*/
-        /*console.log(
+        });
+        /*
+        console.log(
           [...new Set(data.map(el => el.period).flat(1))].filter(el =>
             isNaN(el)
           )

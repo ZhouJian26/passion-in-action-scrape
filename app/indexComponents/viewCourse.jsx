@@ -21,7 +21,10 @@ const ViewCourse = ({ courseList, filter, switchView }) => {
               <Card.Body className="d-flex flex-column justify-content-center">
                 <Card.Title>{course.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
-                  {course.tag.toLowerCase()}
+                  {course.tag
+                    .toLowerCase()
+                    .split(",")
+                    .join(" - ")}
                 </Card.Subtitle>
 
                 <ListGroup variant="flush mt-3">
@@ -36,9 +39,34 @@ const ViewCourse = ({ courseList, filter, switchView }) => {
                       .split(";")
                       .join(", ")}
                   </ListGroup.Item>
-                  <ListGroup.Item>
-                    Periodo svolgimento: {course.period.substring(4)}
-                  </ListGroup.Item>
+                  {course.period.length == 2 ? (
+                    <ListGroup.Item>
+                      Periodo svolgimento:{" "}
+                      {`${course.period[0]} ${course.period[1]}`}
+                    </ListGroup.Item>
+                  ) : (
+                    ""
+                  )}
+                  {course.period.length == 3 ? (
+                    <ListGroup.Item>
+                      Periodo svolgimento:{" "}
+                      {`${course.period[0]} a ${course.period[2]} ${
+                        course.period[1]
+                      }`}
+                    </ListGroup.Item>
+                  ) : (
+                    ""
+                  )}
+                  {course.period.length == 4 ? (
+                    <ListGroup.Item>
+                      Periodo svolgimento:{" "}
+                      {`${course.period[0]} ${course.period[1]} a ${
+                        course.period[2]
+                      } ${course.period[3]}`}
+                    </ListGroup.Item>
+                  ) : (
+                    ""
+                  )}
                   <ListGroup.Item>Lingua: {course.lang}</ListGroup.Item>
                   <ListGroup.Item>Docente: {course.prof}</ListGroup.Item>
                   <ListGroup.Item>{course.linkToText}</ListGroup.Item>
