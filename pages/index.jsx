@@ -3,7 +3,7 @@
  * Ovviamente si possono fare template mixate, quindi uno generale e altri particolari
  */
 
-import "../sass/main.scss";
+//import "../sass/main.scss";
 import Head from "next/head";
 import React from "react";
 import Layout from "../app/layout/dracula";

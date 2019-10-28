@@ -10,6 +10,19 @@ import ViewFilter from "./viewFilter";
  * handle/hook function for control view
  */
 const API = "/static/example.json"; //"/api/getCourses.js"
+
+const buildFilterList = arrToFormat => {
+  return [...new Set(arrToFormat)].map((el, index) => {
+    return { key: el, value: 0 };
+  });
+};
+const buildFilterCategory = (category, key, filterList) => {
+  return {
+    category: category,
+    key: key,
+    filter: buildFilterList(filterList)
+  };
+};
 class CourseListApp extends Component {
   constructor(props) {
     super(props);
@@ -52,52 +65,36 @@ class CourseListApp extends Component {
           el.linkToText = "Iscrizioni chiuse";
           return el;
         });
-        const filter = [
-          {
-            category: "Stato iscrizioni",
-            key: "linkToText",
-            filter: [...new Set(data.map(el => el.linkToText))].map(el => {
-              return { key: el, value: 0 };
-            })
-          },
-          {
-            category: "Interessati",
-            key: "addressedTo",
-            filter: [...new Set(data.map(el => el.addressedTo))].map(el => {
-              return { key: el, value: 0 };
-            })
-          },
-          {
-            category: "Dove",
-            key: "location",
-            filter: [...new Set(data.map(el => el.location))].map(el => {
-              return { key: el, value: 0 };
-            })
-          },
-          {
-            category: "Lingua",
-            key: "lang",
-            filter: [...new Set(data.map(el => el.lang))].map(el => {
-              return { key: el, value: 0 };
-            })
-          },
-          {
-            category: "Prof",
-            key: "prof",
-            filter: [...new Set(data.map(el => el.prof))].map(el => {
-              return { key: el, value: 0 };
-            })
-          }
-        ];
+        const filter = [];
+        filter.push(
+          buildFilterCategory(
+            "Stato iscrizioni",
+            "linkToText",
+            data.map(el => el.linkToText)
+          )
+        );
+        filter.push(
+          buildFilterCategory(
+            "Interessati",
+            "addressedTo",
+            data.map(el => el.addressedTo)
+          )
+        );
+        filter.push(
+          buildFilterCategory("Dove", "location", data.map(el => el.location))
+        );
+        filter.push(
+          buildFilterCategory("Lingua", "lang", data.map(el => el.lang))
+        );
+        filter.push(
+          buildFilterCategory("Prof", "prof", data.map(el => el.prof))
+        );
+
         this.setState({ courseList: data, status: 1, filter: filter });
       });
   }
   handleClickSwitchView() {
-    if (this.state.status == 1) {
-      this.setState({ status: 2 });
-      return;
-    }
-    this.setState({ status: 1 });
+    this.setState({ status: this.state.status == 1 ? 2 : 1 });
   }
   handleClickResetFilter() {
     const filter = this.state.filter.map(category => {
@@ -109,20 +106,14 @@ class CourseListApp extends Component {
     });
     this.setState({ filter: filter });
   }
-  handleClickCheckbox({ categoryKey, filterKey }) {
-    const filter = this.state.filter.map(category => {
-      if (category.key != categoryKey) return category;
-      category.filter = category.filter.map(filtro => {
-        if (filtro.key != filterKey) return filtro;
-        return { key: filtro.key, value: filtro.value == 0 ? 1 : 0 };
-      });
-      return category;
-    });
-    this.setState({ filter: filter });
+  handleClickCheckbox({ categoryId, filterId }) {
+    const { filter } = this.state;
+    filter[categoryId].filter[filterId].value =
+      filter[categoryId].filter[filterId].value == 0 ? 1 : 0;
+    this.setState({ filter: [...filter] });
   }
   render() {
     const { courseList, status, filter } = this.state;
-    //console.log(filter);
     return (
       <Container fluid={true} className="mt-5 mb-2">
         {status == 2 ? (

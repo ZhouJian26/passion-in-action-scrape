@@ -31,7 +31,7 @@ const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
               {categoria.filter.map((filtro, index2) => (
                 <Col
                   key={`${categoria.key}-${index}-${index2}`}
-                  className="col-11 col-sm-5 col-md-5 col-lg-4 col-xl-4 py-1"
+                  className="col-11 col-sm-5 col-md-5 col-lg-4 col-xl-4 py-2"
                 >
                   <Form.Check
                     type="checkbox"
@@ -40,8 +40,8 @@ const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
                     checked={filtro.value}
                     onChange={() => {
                       onCheckboxClick({
-                        categoryKey: categoria.key,
-                        filterKey: filtro.key
+                        categoryId: index,
+                        filterId: index2
                       });
                     }}
                   ></Form.Check>
