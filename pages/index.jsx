@@ -8,7 +8,7 @@ import Head from "next/head";
 import React from "react";
 import Layout from "../app/layout/dracula";
 import CourseListApp from "../app/indexComponents/courseListApp";
-import "bootstrap/dist/css/bootstrap.min.css";
+//import "bootstrap/dist/css/bootstrap.min.css";
 
 const Index = () => (
   <React.Fragment>
