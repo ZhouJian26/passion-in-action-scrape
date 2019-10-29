@@ -19,8 +19,7 @@ const Footer = () => (
 
     <p>Version 0.1.1</p>
     <p className="m-0">
-      {" "}
-      ©{new Date().getFullYear()}{" "}
+      Developed by{" "}
       <b>
         <a className="text-light" href="https://zhoujiandev.com">
           Zhou Jian

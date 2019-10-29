@@ -23,6 +23,31 @@ const buildFilterCategory = (category, key, filterList) => {
     filter: buildFilterList(filterList)
   };
 };
+const filterCourse = (filter, courseList) => {
+  const trueFilter = filter
+    .map(categoriaFiltro => {
+      return {
+        key: categoriaFiltro.key,
+        filter: categoriaFiltro.filter
+          .filter(filtro => {
+            return filtro.value == 1;
+          })
+          .map(filter => {
+            return filter.key;
+          })
+      };
+    })
+    .filter(categoriaFiltro => {
+      return categoriaFiltro.filter.length;
+    });
+  return courseList.filter(course => {
+    let hit = 0;
+    trueFilter.forEach(categoriaFiltro => {
+      if (categoriaFiltro.filter.includes(course[categoriaFiltro.key])) hit++;
+    });
+    return hit == trueFilter.length;
+  });
+};
 class CourseListApp extends Component {
   constructor(props) {
     super(props);
@@ -87,10 +112,10 @@ class CourseListApp extends Component {
         );
         filter.push(
           buildFilterCategory("Dove", "location", data.map(el => el.location))
-        );
+        ); /*
         filter.push(
           buildFilterCategory("Lingua", "lang", data.map(el => el.lang))
-        );
+        );*/
         filter.push(
           buildFilterCategory("Prof", "prof", data.map(el => el.prof))
         );
@@ -120,6 +145,7 @@ class CourseListApp extends Component {
   }
   render() {
     const { courseList, status, filter } = this.state;
+    const toViewCourse = filterCourse(filter, courseList);
     return (
       <Container fluid={true} className="mt-5 mb-2">
         {status == 2 ? (
@@ -134,7 +160,7 @@ class CourseListApp extends Component {
         )}
         {status == 1 ? (
           <ViewCourse
-            courseList={courseList}
+            courseList={toViewCourse}
             filter={filter}
             switchView={this.handleClickSwitchView}
           ></ViewCourse>
