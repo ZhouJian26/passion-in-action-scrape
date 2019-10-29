@@ -5,11 +5,8 @@ import ViewLoading from "./viewLoading";
 import ViewFilter from "./viewFilter";
 /**
  * add get data form S3
- * add a controlledcomponent for card
- * add a component for filter
- * handle/hook function for control view
  */
-const API = "/static/example.json"; //"/api/getCourses.js"
+const API = "/api/courseList.js";
 
 const buildFilterList = arrToFormat => {
   return [...new Set(arrToFormat)].sort().map(el => {
