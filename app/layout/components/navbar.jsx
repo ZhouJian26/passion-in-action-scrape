@@ -5,7 +5,11 @@ import Link from "next/link";
 import { Navbar, Nav } from "react-bootstrap";
 const Navbar_c = () => (
   <Navbar fixed="top" style={{ backgroundColor: "#0f2c53" }} variant="dark">
-    <Navbar.Brand href="#home" style={{ letterSpacing: ".35px" }}>
+    <Navbar.Brand
+      href="#home"
+      style={{ letterSpacing: ".3px" }}
+      className="font-weight-light"
+    >
       AlternativePassion
     </Navbar.Brand>
   </Navbar>

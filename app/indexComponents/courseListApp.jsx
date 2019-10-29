@@ -43,7 +43,13 @@ const filterCourse = (filter, courseList) => {
   return courseList.filter(course => {
     let hit = 0;
     trueFilter.forEach(categoriaFiltro => {
-      if (categoriaFiltro.filter.includes(course[categoriaFiltro.key])) hit++;
+      if (
+        typeof course[categoriaFiltro.key] === "string" &&
+        categoriaFiltro.filter.includes(course[categoriaFiltro.key])
+      ) {
+        hit++;
+        return;
+      }
     });
     return hit == trueFilter.length;
   });
@@ -161,7 +167,6 @@ class CourseListApp extends Component {
         {status == 1 ? (
           <ViewCourse
             courseList={toViewCourse}
-            filter={filter}
             switchView={this.handleClickSwitchView}
           ></ViewCourse>
         ) : (
