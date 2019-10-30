@@ -24,6 +24,9 @@ const subOpenDay = (today, target) => {
       </React.Fragment>
     );
   }
+  return (
+    <React.Fragment>errore open day function {remainingDay}</React.Fragment>
+  );
 };
 const subSoonDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
@@ -35,6 +38,9 @@ const subSoonDay = (today, target) => {
       </React.Fragment>
     );
   }
+  return (
+    <React.Fragment>errore soon day function {remainingDay}</React.Fragment>
+  );
 };
 const subEndDay = () => {
   return <React.Fragment>Iscrizioni chiuse</React.Fragment>;
