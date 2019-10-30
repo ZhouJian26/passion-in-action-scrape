@@ -10,12 +10,15 @@ import React from "react";
 import CourseListApp from "./courseListApp";
 
 const remainingDays = (today, target) => {
-  target = new Date(target.split("-").reverse());
+  target = new Date(target);
   today = new Date(today);
-  return (target - today) / (60 * 60 * 24 * 1000);
+  return Math.floor((target - today) / (60 * 60 * 24 * 1000));
 };
 const subOpenDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
+  if (remainingDay == 0) {
+    return <React.Fragment>Le iscrizioni chiudono a breve</React.Fragment>;
+  }
   if (remainingDay > 0) {
     return (
       <React.Fragment>
@@ -24,12 +27,12 @@ const subOpenDay = (today, target) => {
       </React.Fragment>
     );
   }
-  return (
-    <React.Fragment>errore open day function {remainingDay}</React.Fragment>
-  );
 };
 const subSoonDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
+  if (remainingDay == 0) {
+    <React.Fragment>Iscrizioni aprono a breve</React.Fragment>;
+  }
   if (remainingDay > 0) {
     return (
       <React.Fragment>
@@ -38,9 +41,6 @@ const subSoonDay = (today, target) => {
       </React.Fragment>
     );
   }
-  return (
-    <React.Fragment>errore soon day function {remainingDay}</React.Fragment>
-  );
 };
 const subEndDay = () => {
   return <React.Fragment>Iscrizioni chiuse</React.Fragment>;
@@ -54,16 +54,40 @@ const viewSubscriptionStatus = (today, course) => {
         course.linkToText == "Prossimamente" ? "text-info" : ""
       } ${
         course.linkToText == "Iscrizioni aperte" &&
-        remainingDays(today, course.EndSubDate) == 1
+        remainingDays(
+          today,
+          course.EndSubDate.split("-")
+            .reverse()
+            .join("-") +
+            "T" +
+            course.EndSubTime +
+            ":00"
+        ) <= 1
           ? "text-warning"
           : ""
       }`}
     >
       {course.linkToText == "Iscrizioni aperte"
-        ? subOpenDay(today, course.EndSubDate)
+        ? subOpenDay(
+            today,
+            course.EndSubDate.split("-")
+              .reverse()
+              .join("-") +
+              "T" +
+              course.EndSubTime +
+              ":00"
+          )
         : ""}
       {course.linkToText == "Prossimamente"
-        ? subSoonDay(today, course.StartSubData)
+        ? subSoonDay(
+            today,
+            course.StartSubData.split("-")
+              .reverse()
+              .join("-") +
+              "T" +
+              course.EndSubTime +
+              ":00"
+          )
         : ""}
       {course.linkToText == "Iscrizioni chiuse" ? subEndDay() : ""}
     </ListGroup.Item>
@@ -137,8 +161,8 @@ const ViewCourse = ({ courseList, switchView }) => {
 };
 const createViewCourse = courseList => {
   //console.table(courseList, "EndSubDate");
-  const nowDay = new Date();
-  const today = [nowDay.getFullYear(), nowDay.getMonth() + 1, nowDay.getDate()];
+  const today = new Date();
+  //const today = [nowDay.getFullYear(), nowDay.getMonth() + 1, nowDay.getDate()];
   return (
     <Row className="justify-content-center pt-3 mr-lg-3 ml-lg-3 min-vh-100">
       {courseList.map((course, index) => (
