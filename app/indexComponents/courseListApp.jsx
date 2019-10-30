@@ -6,7 +6,7 @@ import ViewFilter from "./viewFilter";
 /**
  * add get data form S3
  */
-const API = "/api/courseList.js";
+const API = "/api/courseList.js"; //"/static/example.json"; //"/api/courseList.js";
 
 const buildFilterList = arrToFormat => {
   return [...new Set(arrToFormat)].sort().map(el => {
@@ -47,6 +47,21 @@ const filterCourse = (filter, courseList) => {
         hit++;
         return;
       }
+
+      if (
+        typeof course[categoriaFiltro.key] === "object" &&
+        new Set(
+          [].concat(
+            categoriaFiltro.filter,
+            course[categoriaFiltro.key].filter(el => isNaN(el))
+          )
+        ).size !=
+          categoriaFiltro.filter.length +
+            course[categoriaFiltro.key].filter(el => isNaN(el)).length
+      ) {
+        hit++;
+        return;
+      }
     });
     return hit == trueFilter.length;
   });
@@ -68,6 +83,7 @@ class CourseListApp extends Component {
       .then(response => response.json())
       .then(data => {
         data = data.map(el => {
+          el.type = el.type.toLowerCase().split(/; |,  |, /);
           el.period = [
             ...new Set(
               el.period
@@ -77,12 +93,6 @@ class CourseListApp extends Component {
           ];
           return el;
         });
-        /*
-        console.log(
-          [...new Set(data.map(el => el.period).flat(1))].filter(el =>
-            isNaN(el)
-          )
-        );*/
         /**
          * Costruzione valori dei filtri
          */
@@ -100,6 +110,10 @@ class CourseListApp extends Component {
         });
         const filter = [];
         filter.push(
+          buildFilterCategory("Dove", "location", data.map(el => el.location))
+        );
+
+        filter.push(
           buildFilterCategory(
             "Stato iscrizioni",
             "linkToText",
@@ -114,8 +128,20 @@ class CourseListApp extends Component {
           )
         );
         filter.push(
-          buildFilterCategory("Dove", "location", data.map(el => el.location))
-        ); /*
+          buildFilterCategory(
+            "Periodo svolgimento",
+            "period",
+            [...new Set(data.map(el => el.period).flat(1))].filter(el =>
+              isNaN(el)
+            )
+          )
+        );
+        filter.push(
+          buildFilterCategory("Tipo corso", "type", [
+            ...new Set(data.map(el => el.type).flat(1))
+          ])
+        );
+        /*
         filter.push(
           buildFilterCategory("Lingua", "lang", data.map(el => el.lang))
         );*/
@@ -149,6 +175,7 @@ class CourseListApp extends Component {
   render() {
     const { courseList, status, filter } = this.state;
     const toViewCourse = filterCourse(filter, courseList);
+    console.table(toViewCourse);
     return (
       <Container fluid={true} className="mt-5 mb-2">
         {status == 2 ? (
