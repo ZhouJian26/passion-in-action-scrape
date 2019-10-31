@@ -48,7 +48,7 @@ const subEndDay = () => {
 const viewSubscriptionStatus = (today, course) => {
   return (
     <ListGroup.Item
-      className={`${
+      className={`font-weight-normal ${
         course.linkToText == "Iscrizioni aperte" ? "text-success" : ""
       } ${course.linkToText == "Iscrizioni chiuse" ? "text-danger" : ""} ${
         course.linkToText == "Prossimamente" ? "text-info" : ""

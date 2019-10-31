@@ -6,7 +6,7 @@ import ViewFilter from "./viewFilter";
 /**
  * add get data form S3
  */
-const API = "/api/courseList.js"; //"/static/example.json"; //"/api/courseList.js";
+const API = "/api/dataFetch.js";
 
 const buildFilterList = arrToFormat => {
   return [...new Set(arrToFormat)].sort().map(el => {
