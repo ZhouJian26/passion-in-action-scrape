@@ -2,7 +2,7 @@
 const withSass = require("@zeit/next-sass");
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
-const withCSS = require('@zeit/next-css')
+const withCSS = require("@zeit/next-css");
 const fetch = require("isomorphic-unfetch");
 
 if (
@@ -41,8 +41,6 @@ if (
         );
         return Object.assign({}, pages, {
           "/": { page: "/" },
-          [`/fetchData${s3path}`]: { page: "/fetchData" },
-          "/post": { page: "/post" },
           "/404/index.html": { page: "404" }
         });
       }
