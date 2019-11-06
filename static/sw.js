@@ -5,7 +5,7 @@ importScripts(
 if (workbox) {
   workbox.routing.registerRoute(
     "/api/dataFetch.js",
-    new workbox.strategies.StaleWhileRevalidate({
+    new workbox.strategies.NetworkFirst({
       cacheName: "data-course",
       plugins: [
         new workbox.cacheableResponse.Plugin({
@@ -16,7 +16,7 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     "/",
-    new workbox.strategies.StaleWhileRevalidate({
+    new workbox.strategies.NetworkFirst({
       cacheName: "app",
       plugins: [
         new workbox.cacheableResponse.Plugin({
