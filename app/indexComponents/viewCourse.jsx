@@ -7,7 +7,6 @@
 
 import { Card, ListGroup, Row, Col, Button, Container } from "react-bootstrap";
 import React from "react";
-import CourseListApp from "./courseListApp";
 
 const remainingDays = (today, target) => {
   target = new Date(target);
@@ -183,12 +182,12 @@ const createViewCourse = courseList => {
               <ListGroup variant="flush mt-3">
                 <ListGroup.Item>Presso {course.location}</ListGroup.Item>
                 <ListGroup.Item>Rivolto a {course.addressedTo}</ListGroup.Item>
+                {viewPeriod(course)}
+                <ListGroup.Item>Docente: {course.prof}</ListGroup.Item>
+                <ListGroup.Item>Lingua: {course.lang}</ListGroup.Item>
                 <ListGroup.Item>
                   Tipo corso: {course.type.join(", ")}
                 </ListGroup.Item>
-                {viewPeriod(course)}
-                <ListGroup.Item>Lingua: {course.lang}</ListGroup.Item>
-                <ListGroup.Item>Docente: {course.prof}</ListGroup.Item>
                 {viewSubscriptionStatus(today, course)}
               </ListGroup>
               <Card.Text>
