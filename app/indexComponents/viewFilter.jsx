@@ -55,7 +55,7 @@ const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
       <Row
         className="position-sticky"
         style={{
-          bottom: "2.25vh",
+          bottom: "2.75vh",
           justifyContent: "center"
         }}
       >

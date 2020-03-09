@@ -135,9 +135,9 @@ const ViewCourse = ({ courseList, switchView }) => {
     <React.Fragment>
       {courseList.length != 0 ? createViewCourse(courseList) : nothingView()}
       <Row
-        className="position-sticky mt-1"
+        className="position-sticky mt-2"
         style={{
-          bottom: "2.25vh",
+          bottom: "2.75vh",
           justifyContent: "center"
         }}
       >
