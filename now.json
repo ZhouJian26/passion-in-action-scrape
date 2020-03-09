@@ -4,7 +4,6 @@
   "routes": [
     {
       "src": "^/sw.js$",
-      "dest": "/public/sw.js",
       "headers": {
         "Service-Worker-Allowed": "/"
       }
