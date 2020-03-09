@@ -7,7 +7,7 @@ const Navbar_c = () => (
   <Navbar fixed="top" style={{ backgroundColor: "#0f2c53" }} variant="dark">
     <Navbar.Brand
       href="#home"
-      style={{ letterSpacing: ".3px" }}
+      style={{ letterSpacing: ".4px" }}
       className="font-weight-light"
     >
       AlternativePassion

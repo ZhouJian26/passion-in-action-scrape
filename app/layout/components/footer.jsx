@@ -7,13 +7,13 @@ const Footer = () => (
     className="text-center text-light p-3 font-weight-light"
   >
     <p>
-      This is a fake website of{" "}
+      This is an unofficial website of{" "}
       <a
         className="text-light"
         href="https://www.polimi.it/corsi/passion-in-action/"
         rel="nofollow"
       >
-        Polimi's Passion In Action Official website.
+        Polimi's Passion In Action.
       </a>
     </p>
     <p>I developed this website for the purpose of learning Web Development.</p>
