@@ -30,7 +30,7 @@ const subOpenDay = (today, target) => {
 const subSoonDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
   if (remainingDay == 0) {
-    <React.Fragment>Iscrizioni aprono a breve</React.Fragment>;
+    return <React.Fragment>Iscrizioni aprono a breve</React.Fragment>;
   }
   if (remainingDay > 0) {
     return (
@@ -113,9 +113,7 @@ const viewPeriod = course => {
       {course.period.length == 4 ? (
         <ListGroup.Item>
           Periodo svolgimento:{" "}
-          {`${course.period[0]} ${course.period[1]} a ${course.period[2]} ${
-            course.period[3]
-          }`}
+          {`${course.period[0]} ${course.period[1]} a ${course.period[2]} ${course.period[3]}`}
         </ListGroup.Item>
       ) : (
         ""
@@ -137,10 +135,9 @@ const ViewCourse = ({ courseList, switchView }) => {
     <React.Fragment>
       {courseList.length != 0 ? createViewCourse(courseList) : nothingView()}
       <Row
-        className="position-sticky"
+        className="position-sticky mt-2"
         style={{
-          bottom: 0,
-          padding: "1vh",
+          bottom: "2.75vh",
           justifyContent: "center"
         }}
       >
@@ -194,6 +191,7 @@ const createViewCourse = courseList => {
                 <Button
                   variant="outline-dark"
                   className="mt-3"
+                  target="_black"
                   href={`https://www.polimi.it${course.linkWs}`}
                   rel="nofollow"
                 >

@@ -6,7 +6,7 @@ import ViewFilter from "./viewFilter";
 /**
  * add get data form S3
  */
-const API = "/api/dataFetch.js";
+const API = "/api/courses";
 
 const buildFilterList = arrToFormat => {
   return [...new Set(arrToFormat)].sort().map(el => {
@@ -110,7 +110,11 @@ class CourseListApp extends Component {
         });
         const filter = [];
         filter.push(
-          buildFilterCategory("Dove", "location", data.map(el => el.location))
+          buildFilterCategory(
+            "Dove",
+            "location",
+            data.map(el => el.location)
+          )
         );
 
         filter.push(
@@ -146,7 +150,11 @@ class CourseListApp extends Component {
           buildFilterCategory("Lingua", "lang", data.map(el => el.lang))
         );*/
         filter.push(
-          buildFilterCategory("Prof", "prof", data.map(el => el.prof))
+          buildFilterCategory(
+            "Prof",
+            "prof",
+            data.map(el => el.prof)
+          )
         );
 
         this.setState({ courseList: data, status: 1, filter: filter });
@@ -176,7 +184,7 @@ class CourseListApp extends Component {
     const { courseList, status, filter } = this.state;
     const toViewCourse = filterCourse(filter, courseList);
     return (
-      <Container fluid={true} className="mt-5 mb-2">
+      <Container fluid={true} className="mt-5 mb-4">
         {status == 2 ? (
           <ViewFilter
             filter={filter}

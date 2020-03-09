@@ -4,10 +4,14 @@ importScripts(
 
 if (workbox) {
   workbox.routing.registerRoute(
-    "/api/dataFetch.js",
-    new workbox.strategies.NetworkFirst({
+    "/api/courses",
+    new workbox.strategies.CacheFirst({
       cacheName: "data-course",
       plugins: [
+        new workbox.expiration.Plugin({
+          maxEntries: 512,
+          maxAgeSeconds: 60 * 60 // 1 ora
+        }),
         new workbox.cacheableResponse.Plugin({
           statuses: [0, 200]
         })
@@ -16,7 +20,7 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     "/",
-    new workbox.strategies.NetworkFirst({
+    new workbox.strategies.StaleWhileRevalidate({
       cacheName: "app",
       plugins: [
         new workbox.cacheableResponse.Plugin({
@@ -27,13 +31,9 @@ if (workbox) {
   );
   workbox.routing.registerRoute(
     /static/,
-    new workbox.strategies.CacheFirst({
-      cacheName: "app-static-file",
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: "app-public-file",
       plugins: [
-        new workbox.expiration.Plugin({
-          maxEntries: 32,
-          maxAgeSeconds: 60 * 60 * 24 * 365 // 365 giorni
-        }),
         new workbox.cacheableResponse.Plugin({
           statuses: [0, 200]
         })

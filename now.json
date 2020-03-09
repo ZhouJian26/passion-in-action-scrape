@@ -4,7 +4,6 @@
   "routes": [
     {
       "src": "^/sw.js$",
-      "dest": "/static/sw.js",
       "headers": {
         "Service-Worker-Allowed": "/"
       }
@@ -14,10 +13,6 @@
     {
       "src": "package.json",
       "use": "@now/next"
-    },
-    {
-      "src": "/api/*",
-      "use": "@now/node"
     }
   ]
 }
