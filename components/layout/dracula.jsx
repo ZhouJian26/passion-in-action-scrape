@@ -6,7 +6,7 @@ import React from "react";
 import Head from "next/head";
 import Navbar_c from "./components/navbar";
 import Footer from "./components/footer";
-const Layout = props => (
+const Layout = (props) => (
   <React.Fragment>
     <Head>
       <link
@@ -17,7 +17,7 @@ const Layout = props => (
       />
     </Head>
     <Navbar_c></Navbar_c>
-    {props.children}
+    <main>{props.children}</main>
     <Footer></Footer>
   </React.Fragment>
 );

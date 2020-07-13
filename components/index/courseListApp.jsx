@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
-import ViewCourse from "./viewCourse";
-import ViewLoading from "./viewLoading";
-import ViewFilter from "./viewFilter";
+import ViewCourse from "./course";
+import ViewLoading from "./loadingSpinner";
+import ViewFilter from "./filterView";
 /**
  * add get data form S3
  */
 const API = "/api/courses";
 
-const buildFilterList = arrToFormat => {
-  return [...new Set(arrToFormat)].sort().map(el => {
+const buildFilterList = (arrToFormat) => {
+  return [...new Set(arrToFormat)].sort().map((el) => {
     return { key: el, value: 0 };
   });
 };
@@ -17,29 +17,29 @@ const buildFilterCategory = (category, key, filterList) => {
   return {
     category: category,
     key: key,
-    filter: buildFilterList(filterList)
+    filter: buildFilterList(filterList),
   };
 };
 const filterCourse = (filter, courseList) => {
   const trueFilter = filter
-    .map(categoriaFiltro => {
+    .map((categoriaFiltro) => {
       return {
         key: categoriaFiltro.key,
         filter: categoriaFiltro.filter
-          .filter(filtro => {
+          .filter((filtro) => {
             return filtro.value == 1;
           })
-          .map(filter => {
+          .map((filter) => {
             return filter.key;
-          })
+          }),
       };
     })
-    .filter(categoriaFiltro => {
+    .filter((categoriaFiltro) => {
       return categoriaFiltro.filter.length;
     });
-  return courseList.filter(course => {
+  return courseList.filter((course) => {
     let hit = 0;
-    trueFilter.forEach(categoriaFiltro => {
+    trueFilter.forEach((categoriaFiltro) => {
       if (
         typeof course[categoriaFiltro.key] === "string" &&
         categoriaFiltro.filter.includes(course[categoriaFiltro.key])
@@ -53,11 +53,11 @@ const filterCourse = (filter, courseList) => {
         new Set(
           [].concat(
             categoriaFiltro.filter,
-            course[categoriaFiltro.key].filter(el => isNaN(el))
+            course[categoriaFiltro.key].filter((el) => isNaN(el))
           )
         ).size !=
           categoriaFiltro.filter.length +
-            course[categoriaFiltro.key].filter(el => isNaN(el)).length
+            course[categoriaFiltro.key].filter((el) => isNaN(el)).length
       ) {
         hit++;
         return;
@@ -72,7 +72,7 @@ class CourseListApp extends Component {
     this.state = {
       status: 0, //0 carico i dati, 1 view, 2 filtra
       courseList: [],
-      filter: []
+      filter: [],
     };
     this.handleClickCheckbox = this.handleClickCheckbox.bind(this);
     this.handleClickSwitchView = this.handleClickSwitchView.bind(this);
@@ -80,23 +80,23 @@ class CourseListApp extends Component {
   }
   componentDidMount() {
     fetch(API)
-      .then(response => response.json())
-      .then(data => {
-        data = data.map(el => {
+      .then((response) => response.json())
+      .then((data) => {
+        data = data.map((el) => {
           el.type = el.type.toLowerCase().split(/; |,  |, /);
           el.period = [
             ...new Set(
               el.period
                 .split(" ")
-                .filter(el2 => el2 != "a" && el2 != "dal" && el2 != "")
-            )
+                .filter((el2) => el2 != "a" && el2 != "dal" && el2 != "")
+            ),
           ];
           return el;
         });
         /**
          * Costruzione valori dei filtri
          */
-        data = data.map(el => {
+        data = data.map((el) => {
           if (el.linkToText == "") {
             el.linkToText = "Prossimamente";
             return el;
@@ -113,7 +113,7 @@ class CourseListApp extends Component {
           buildFilterCategory(
             "Dove",
             "location",
-            data.map(el => el.location)
+            data.map((el) => el.location)
           )
         );
 
@@ -121,28 +121,28 @@ class CourseListApp extends Component {
           buildFilterCategory(
             "Stato iscrizioni",
             "linkToText",
-            data.map(el => el.linkToText)
+            data.map((el) => el.linkToText)
           )
         );
         filter.push(
           buildFilterCategory(
             "Interessati",
             "addressedTo",
-            data.map(el => el.addressedTo)
+            data.map((el) => el.addressedTo)
           )
         );
         filter.push(
           buildFilterCategory(
             "Periodo svolgimento",
             "period",
-            [...new Set(data.map(el => el.period).flat(1))].filter(el =>
+            [...new Set(data.map((el) => el.period).flat(1))].filter((el) =>
               isNaN(el)
             )
           )
         );
         filter.push(
           buildFilterCategory("Tipo corso", "type", [
-            ...new Set(data.map(el => el.type).flat(1))
+            ...new Set(data.map((el) => el.type).flat(1)),
           ])
         );
         /*
@@ -153,7 +153,7 @@ class CourseListApp extends Component {
           buildFilterCategory(
             "Prof",
             "prof",
-            data.map(el => el.prof)
+            data.map((el) => el.prof)
           )
         );
 
@@ -165,8 +165,8 @@ class CourseListApp extends Component {
     this.setState({ status: this.state.status == 1 ? 2 : 1 });
   }
   handleClickResetFilter() {
-    const filter = this.state.filter.map(category => {
-      category.filter = category.filter.map(filtro => {
+    const filter = this.state.filter.map((category) => {
+      category.filter = category.filter.map((filtro) => {
         filtro.value = 0;
         return filtro;
       });
