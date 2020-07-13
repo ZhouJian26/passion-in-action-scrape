@@ -3,9 +3,7 @@ import { Container } from "react-bootstrap";
 import ViewCourse from "./course";
 import ViewLoading from "./loadingSpinner";
 import ViewFilter from "./filterView";
-/**
- * add get data form S3
- */
+
 const API = "/api/courses";
 
 const buildFilterList = (arrToFormat) => {

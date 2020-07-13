@@ -2,7 +2,6 @@
  * Controlled React-Component
  * for view of a list of course
  *
- * !!! IMPLEMENTARE FUNZIONE PER IL PANNELLO DI FILTRO
  */
 
 import { Card, ListGroup, Row, Col, Button, Container } from "react-bootstrap";
@@ -15,31 +14,31 @@ const remainingDays = (today, target) => {
 };
 const subOpenDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
-  if (remainingDay == 0) {
+
+  if (remainingDay < 0) return;
+
+  if (remainingDay == 0)
     return <React.Fragment>Le iscrizioni chiudono a breve</React.Fragment>;
-  }
-  if (remainingDay > 0) {
-    return (
-      <React.Fragment>
-        Iscrizioni aperte per{" "}
-        {remainingDay == 1 ? `un altro giorno` : `altri ${remainingDay} giorni`}
-      </React.Fragment>
-    );
-  }
+
+  return (
+    <React.Fragment>
+      Iscrizioni aperte per{" "}
+      {remainingDay == 1 ? `un altro giorno` : `altri ${remainingDay} giorni`}
+    </React.Fragment>
+  );
 };
 const subSoonDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
-  if (remainingDay == 0) {
+  if (remainingDay < 0) return;
+  if (remainingDay == 0)
     return <React.Fragment>Iscrizioni aprono a breve</React.Fragment>;
-  }
-  if (remainingDay > 0) {
-    return (
-      <React.Fragment>
-        Le iscrizioni aprono tra{" "}
-        {remainingDay == 1 ? `un giorno` : `${remainingDay} giorni`}
-      </React.Fragment>
-    );
-  }
+
+  return (
+    <React.Fragment>
+      Le iscrizioni aprono tra{" "}
+      {remainingDay == 1 ? `un giorno` : `${remainingDay} giorni`}
+    </React.Fragment>
+  );
 };
 const subEndDay = () => {
   return <React.Fragment>Iscrizioni chiuse</React.Fragment>;
@@ -55,12 +54,9 @@ const viewSubscriptionStatus = (today, course) => {
         course.linkToText == "Iscrizioni aperte" &&
         remainingDays(
           today,
-          course.EndSubDate.split("-")
-            .reverse()
-            .join("-") +
-            "T" +
-            course.EndSubTime +
-            ":00"
+          `${course.EndSubDate.split("-").reverse().join("-")}T${
+            course.EndSubTime
+          }:00`
         ) <= 1
           ? "text-warning"
           : ""
@@ -69,30 +65,24 @@ const viewSubscriptionStatus = (today, course) => {
       {course.linkToText == "Iscrizioni aperte"
         ? subOpenDay(
             today,
-            course.EndSubDate.split("-")
-              .reverse()
-              .join("-") +
-              "T" +
-              course.EndSubTime +
-              ":00"
+            `${course.EndSubDate.split("-").reverse().join("-")}T${
+              course.EndSubTime
+            }:00`
           )
         : ""}
       {course.linkToText == "Prossimamente"
         ? subSoonDay(
             today,
-            course.StartSubData.split("-")
-              .reverse()
-              .join("-") +
-              "T" +
-              course.EndSubTime +
-              ":00"
+            `${course.StartSubData.split("-").reverse().join("-")}T${
+              course.EndSubTime
+            }:00`
           )
         : ""}
       {course.linkToText == "Iscrizioni chiuse" ? subEndDay() : ""}
     </ListGroup.Item>
   );
 };
-const viewPeriod = course => {
+const viewPeriod = (course) => {
   return (
     <React.Fragment>
       {course.period.length == 2 ? (
@@ -138,7 +128,7 @@ const ViewCourse = ({ courseList, switchView }) => {
         className="position-sticky mt-2"
         style={{
           bottom: "2.75vh",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Button
@@ -155,10 +145,8 @@ const ViewCourse = ({ courseList, switchView }) => {
     </React.Fragment>
   );
 };
-const createViewCourse = courseList => {
-  //console.table(courseList, "EndSubDate");
+const createViewCourse = (courseList) => {
   const today = new Date();
-  //const today = [nowDay.getFullYear(), nowDay.getMonth() + 1, nowDay.getDate()];
   return (
     <Row className="justify-content-center pt-3 mr-lg-3 ml-lg-3 min-vh-100">
       {courseList.map((course, index) => (
@@ -170,10 +158,7 @@ const createViewCourse = courseList => {
             <Card.Body className="d-flex flex-column justify-content-center">
               <Card.Title>{course.title}</Card.Title>
               <Card.Subtitle className="mb-2 font-weight-light text-dark">
-                {course.tag
-                  .toLowerCase()
-                  .split(",")
-                  .join(" - ")}
+                {course.tag.toLowerCase().split(",").join(" - ")}
               </Card.Subtitle>
 
               <ListGroup variant="flush mt-3">
