@@ -16,7 +16,7 @@
   "author": "Zhou Jian",
   "license": "MIT",
   "dependencies": {
-    "@now/node": "^1.4.1",
+    "@now/node": "^1.7.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bootstrap": "^4.4.1",
