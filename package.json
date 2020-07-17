@@ -1,17 +1,11 @@
 {
-  "name": "PassionInActionAlternative",
+  "name": "passion-in-action-scrape-project",
   "version": "1.0.0",
   "description": "Alternative website of Passion in Action of Polimi.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-undinamic": "next",
-    "dev-dinamic": "node ./backend/server.js",
     "build": "next build",
-    "start-undinamic": "next build && next start",
-    "start-dinamic": "NODE_ENV=production node ./backend/server.js",
-    "now-build": "next build",
-    "build-deploy": "next build && next export && node utility_script/gulp.optimizer.js"
+    "now-build": "next build"
   },
   "author": "Zhou Jian",
   "license": "MIT",
@@ -33,9 +27,5 @@
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1",
     "request": "^2.88.2"
-  },
-  "devDependencies": {
-    "cheerio": "^1.0.0-rc.3",
-    "gulp": "^4.0.2"
   }
 }

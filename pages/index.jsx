@@ -5,8 +5,8 @@
 
 import Head from "next/head";
 import React from "react";
-import Layout from "../app/layout/dracula";
-import CourseListApp from "../app/indexComponents/courseListApp";
+import Layout from "../components/layout/dracula";
+import CourseListApp from "../components/index/courseListApp";
 
 const Index = () => (
   <React.Fragment>
