@@ -4,7 +4,7 @@
 > This is a simple project for personal learning about web development, so this is not have been done for a real use.  
 > In particular, NextJS and AWS (S3, Lambda and CloudWatch)
 
-The project consists of scraping data from the original website (passion in action Polimi) using a Lambda function hosted on AWS and then putting those data into an S3 bucket.
+The project consists of scraping data from the original website (passion in action Polimi) using a Lambda function hosted on AWS and then putting those data into an S3 bucket. ([Website Link](https://passion.now.sh))
 
 The Lambda function is triggered periodically from CloudWatch.
 
