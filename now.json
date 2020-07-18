@@ -14,8 +14,8 @@
     "AWS_S3_REGION": "@aws_s3_region",
     "AWS_S3_BUCKET_NAME": "@aws_s3_bucket_region",
     "AWS_S3_KEY_FILE_NAME": "@aws_s3_key_file_name",
-    "AWS_ACCESS_KEY_ID": "@aws_access_key_id",
-    "AWS_SECRET_ACCESS_KEY": "@aws_secret_access_key"
+    "AWS_ACCESS_KEY_ID_LAMBDA": "@aws_access_key_id_lambda",
+    "AWS_SECRET_ACCESS_KEY_LAMBDA": "@aws_secret_access_lambda"
 
   }
 }
