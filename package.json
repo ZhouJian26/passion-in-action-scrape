@@ -17,5 +17,9 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.2",
     "react-dom": "^16.13.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ZhouJian26/passion-in-action-scrape.git"
   }
 }
