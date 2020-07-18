@@ -1,19 +1,16 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "^/sw.js$",
-      "headers": {
-        "Service-Worker-Allowed": "/"
-      }
-    }
-  ],
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
+  "headers": [{
+    "source": "^/sw.js$",
+    "headers": [{
+      "key": "Service-Worker-Allowed",
+      "value": "/"
+    }]
+  }],
+  "builds": [{
+    "src": "package.json",
+    "use": "@vercel/next"
+  }],
   "env": {
     "AWS_S3_REGION": "@aws_s3_region",
     "AWS_S3_BUCKET_NAME": "@aws_s3_bucket_name",
