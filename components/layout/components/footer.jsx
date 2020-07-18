@@ -31,6 +31,7 @@ const Footer = () => (
             rel="nofollow"
           >
             <img
+              alt="Source code GitHub repository link"
               src={require(`../../../public/svg/github.svg`)}
               style={{
                 height: "45px",
