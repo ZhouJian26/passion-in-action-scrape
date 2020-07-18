@@ -5,12 +5,21 @@ import ViewLoading from "./loadingSpinner";
 import ViewFilter from "./filterView";
 
 const API = "/api/courses";
-
+/**
+ * @param {*} arrToFormat list to convert into a filter list
+ * @returns an array with the given set converted into a set and then mapped into {key, value} format, value means if the key is checked or not
+ */
 const buildFilterList = (arrToFormat) => {
   return [...new Set(arrToFormat)].sort().map((el) => {
     return { key: el, value: 0 };
   });
 };
+/**
+ *
+ * @param {*} category filter category
+ * @param {*} key filter key
+ * @param {*} filterList filter category possible values converted into an array of {key, value}, where value means if is checked or not
+ */
 const buildFilterCategory = (category, key, filterList) => {
   return {
     category: category,
@@ -18,6 +27,12 @@ const buildFilterCategory = (category, key, filterList) => {
     filter: buildFilterList(filterList),
   };
 };
+/**
+ *
+ * @param {*} filter filter to apply
+ * @param {*} courseList course list
+ * @returns list of course that meets filter values
+ */
 const filterCourse = (filter, courseList) => {
   const trueFilter = filter
     .map((categoriaFiltro) => {
@@ -64,11 +79,12 @@ const filterCourse = (filter, courseList) => {
     return hit == trueFilter.length;
   });
 };
+
 class CourseListApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      status: 0, //0 carico i dati, 1 view, 2 filtra
+      status: 0, //0 fetching data, 1 home view, 2 filter view
       courseList: [],
       filter: [],
     };
@@ -92,7 +108,7 @@ class CourseListApp extends Component {
           return el;
         });
         /**
-         * Costruzione valori dei filtri
+         * Creating filter values
          */
         data = data.map((el) => {
           if (el.linkToText == "") {
@@ -158,10 +174,16 @@ class CourseListApp extends Component {
         this.setState({ courseList: data, status: 1, filter: filter });
       });
   }
+  /**
+   * Switch between home and filter view (it works as a toogle)
+   */
   handleClickSwitchView() {
     window.scrollTo(0, 0);
     this.setState({ status: this.state.status == 1 ? 2 : 1 });
   }
+  /**
+   * Reset filter values
+   */
   handleClickResetFilter() {
     const filter = this.state.filter.map((category) => {
       category.filter = category.filter.map((filtro) => {
@@ -172,6 +194,11 @@ class CourseListApp extends Component {
     });
     this.setState({ filter: filter });
   }
+  /**
+   * toogle filter checked values
+   * @param {*} categoryId category id
+   * @param {*} filterId filter values id
+   */
   handleClickCheckbox({ categoryId, filterId }) {
     const { filter } = this.state;
     filter[categoryId].filter[filterId].value =

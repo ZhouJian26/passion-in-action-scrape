@@ -1,17 +1,21 @@
-/**
- * Controlled React-Component
- * for view of a list of course
- *
- */
-
 import { Card, ListGroup, Row, Col, Button, Container } from "react-bootstrap";
 import React from "react";
-
+/**
+ * Return remaining days value
+ * @param {*} today start day
+ * @param {*} target end day
+ */
 const remainingDays = (today, target) => {
   target = new Date(target);
   today = new Date(today);
   return Math.floor((target - today) / (60 * 60 * 24 * 1000));
 };
+
+/**
+ * Return remaining days value mapped into a component
+ * @param {*} today start day
+ * @param {*} target end day
+ */
 const subOpenDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
 
@@ -27,6 +31,11 @@ const subOpenDay = (today, target) => {
     </React.Fragment>
   );
 };
+/**
+ * Return remaining days value mapped into a component
+ * @param {*} today start day
+ * @param {*} target end day
+ */
 const subSoonDay = (today, target) => {
   const remainingDay = remainingDays(today, target);
   if (remainingDay < 0) return;
@@ -40,9 +49,17 @@ const subSoonDay = (today, target) => {
     </React.Fragment>
   );
 };
+/**
+ * Return end subscription component
+ */
 const subEndDay = () => {
   return <React.Fragment>Iscrizioni chiuse</React.Fragment>;
 };
+/**
+ * Return a component showing the current status of the course
+ * @param {*} today start day
+ * @param {*} target end day
+ */
 const viewSubscriptionStatus = (today, course) => {
   return (
     <ListGroup.Item
@@ -82,6 +99,10 @@ const viewSubscriptionStatus = (today, course) => {
     </ListGroup.Item>
   );
 };
+/**
+ * Return subscriptions status of the course
+ * @param {*} course course
+ */
 const viewPeriod = (course) => {
   return (
     <React.Fragment>
@@ -111,7 +132,9 @@ const viewPeriod = (course) => {
     </React.Fragment>
   );
 };
-
+/**
+ * Return a page that said there aren't any course to show for the given filter values
+ */
 const nothingView = () => {
   return (
     <Container className="min-vh-100 d-flex flex-column justify-content-center text-center">
@@ -120,6 +143,11 @@ const nothingView = () => {
     </Container>
   );
 };
+/**
+ * Return the component with the course list mapped into components and a button to switch to filter view
+ * @param {*} courseList course list
+ * @param {*} switchView function to rise to switch into filter view
+ */
 const ViewCourse = ({ courseList, switchView }) => {
   return (
     <React.Fragment>
@@ -145,6 +173,10 @@ const ViewCourse = ({ courseList, switchView }) => {
     </React.Fragment>
   );
 };
+/**
+ * Return the component with the course list mapped into components
+ * @param {*} courseList course list
+ */
 const createViewCourse = (courseList) => {
   const today = new Date();
   return (

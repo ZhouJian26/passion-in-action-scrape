@@ -7,7 +7,9 @@ import Head from "next/head";
 import React from "react";
 import Layout from "../components/layout/dracula";
 import CourseListApp from "../components/index/courseListApp";
-
+/**
+ * Index page
+ */
 const Index = () => (
   <React.Fragment>
     <Head>
