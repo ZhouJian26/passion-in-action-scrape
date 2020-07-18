@@ -1,11 +1,11 @@
-/**
- * Questo è il layout versione 1.0.0
- * devo importare la navbar e il footer qui
- */
 import React from "react";
 import Head from "next/head";
 import Navbar_c from "./components/navbar";
 import Footer from "./components/footer";
+/**
+ * This is the layout
+ * @param {*} props the main of the page
+ */
 const Layout = (props) => (
   <React.Fragment>
     <Head>

@@ -1,5 +1,7 @@
 import { Container } from "react-bootstrap";
-
+/**
+ * Loading Spinner
+ */
 const ViewLoading = () => (
   <Container
     fluid={true}

@@ -1,5 +1,7 @@
 import { Container } from "react-bootstrap";
-
+/**
+ * Return the footer
+ */
 const Footer = () => (
   <footer>
     <Container

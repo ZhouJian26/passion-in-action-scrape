@@ -2,18 +2,12 @@ import React from "react";
 import { Form, Row, Button, Col, Container } from "react-bootstrap";
 
 /**
- * faccio in flex con un container che è flex per quella tipologia
- * {
- *      tipo filtro
- *      filtro:[{
- *                  titolo
- *                  valore attuale
- *              }]
- * }
- * essendo dei set allora posso prendere il loro valore concatenato
- * senza spazio come id
+ * Return the Filter view
+ * @param {*} filter filter data to show
+ * @param {*} onCheckboxClick event to rise on click on a filter value
+ * @param {*} resetFilter event to rise to reset filter values
+ * @param {*} switchView event to rise to switch to courses view
  */
-
 const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
   return (
     <Container>
@@ -42,7 +36,7 @@ const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
                     onChange={() => {
                       onCheckboxClick({
                         categoryId: index,
-                        filterId: index2
+                        filterId: index2,
                       });
                     }}
                   ></Form.Check>
@@ -56,7 +50,7 @@ const ViewFilter = ({ filter, onCheckboxClick, resetFilter, switchView }) => {
         className="position-sticky"
         style={{
           bottom: "2.75vh",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <Button

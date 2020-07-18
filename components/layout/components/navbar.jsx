@@ -1,8 +1,9 @@
 import Link from "next/link";
-/**
- * Questo è come si crea un compotenete, viene usato in layout/test
- */
 import { Navbar } from "react-bootstrap";
+
+/**
+ * Return a simple navbar
+ */
 const Navbar_c = () => (
   <Navbar fixed="top" style={{ backgroundColor: "#0f2c53" }} variant="dark">
     <Link href="/">
