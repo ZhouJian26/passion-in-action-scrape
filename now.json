@@ -15,7 +15,7 @@
     "AWS_S3_BUCKET_NAME": "@aws_s3_bucket_name",
     "AWS_S3_KEY_FILE_NAME": "@aws_s3_key_file_name",
     "AWS_ACCESS_KEY_ID_LAMBDA": "@aws_access_key_id_lambda",
-    "AWS_SECRET_ACCESS_KEY_LAMBDA": "@aws_secret_key_access_lambda"
+    "AWS_SECRET_ACCESS_KEY_LAMBDA": "@aws_secret_access_key_lambda"
 
   }
 }
