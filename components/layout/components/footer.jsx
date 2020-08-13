@@ -48,7 +48,7 @@ const Footer = () => (
         <b>
           <a
             className="text-light"
-            href="https://zhoujiandev.com"
+            href="https://zhoujian.now.sh"
             target="_blank"
             rel="nofollow"
           >
