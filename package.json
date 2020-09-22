@@ -10,7 +10,7 @@
   "author": "Zhou Jian",
   "license": "MIT",
   "dependencies": {
-    "@now/node": "^1.8.2",
+    "@now/node": "^1.8.3",
     "aws-sdk": "^2.751.0",
     "dotenv": "^8.2.0",
     "next": "^9.5.3",
