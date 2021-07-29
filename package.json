@@ -18,7 +18,7 @@
     "next-images": "^1.8.1",
     "react": "^16.14.0",
     "react-bootstrap": "^1.6.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.14.0"
   },
   "repository": {
     "type": "git",
